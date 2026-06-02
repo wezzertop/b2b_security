@@ -21,7 +21,7 @@ Administrators can configure these settings from General Settings and can bypass
         'views/res_users_views.xml',
     ],
     'images': ['static/description/banner.gif', 'static/description/icon.png'],
-    'price': 25.00,
+    'price': 120.00,
     'currency': 'USD',
     'installable': True,
     'application': True,
