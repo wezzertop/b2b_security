@@ -1,6 +1,6 @@
 {
     'name': 'B2B Security: Restrict Logins & Session Timeout',
-    'version': '18.0.1.0.0',
+    'version': '17.0.1.0.0',
     'category': 'Website/Security',
     'summary': 'Controla inicios de sesión simultáneos y fuerza la expiración de sesión por inactividad en el portal.',
     'description': """
