@@ -1,15 +1,15 @@
 {
     'name': 'B2B Security: Restrict Logins & Session Timeout',
     'version': '19.0.1.0.0',
-    'category': 'Website/Security',
-    'summary': 'Controla inicios de sesión simultáneos y fuerza la expiración de sesión por inactividad en el portal.',
+    'category': 'Extra Tools',
+    'summary': 'Prevents simultaneous logins and adds inactivity session timeouts for portal users.',
     'description': """
-B2B Security: Restrict Logins & Session Timeout
-===============================================
-Este módulo proporciona control avanzado sobre las sesiones de usuario para portales B2B en Odoo.
-Permite restringir los inicios de sesión simultáneos (evitando que varias personas usen la misma cuenta),
-estableciendo límites de inactividad y forzando cierres de sesión absolutos para mayor seguridad.
-Ideal para controlar el acceso de clientes a tu portal.
+B2B Security & Session Control
+==============================
+This module helps protect B2B portal environments by implementing two key security features:
+1. Prevents multiple users from logging into the same account simultaneously from different devices/browsers.
+2. Automatically logs users out after a configurable period of inactivity to protect sensitive data.
+Administrators can configure these settings from General Settings and can bypass restrictions for specific users.
     """,
     'author': 'JDDM',
     'depends': ['base', 'base_setup', 'web'],
