@@ -1,32 +1,32 @@
 # B2B Security: Restrict Logins & Session Timeout
 
-Este módulo proporciona control avanzado sobre las sesiones de usuario para portales B2B en Odoo. Está diseñado para mejorar la seguridad y controlar el acceso de los clientes al portal.
+This module provides advanced control over user sessions for B2B portals in Odoo. It is designed to improve security and control customer access to the portal.
 
-## Características Principales
+## Main Features
 
-1. **Restricción de Accesos Simultáneos**: Evita que una misma cuenta inicie sesión desde diferentes dispositivos o navegadores al mismo tiempo.
-2. **Cierre de Sesión por Inactividad**: Establece un tiempo máximo de inactividad (en minutos). Si el usuario no interactúa con la plataforma en ese tiempo, su sesión expirará.
-3. **Expiración Absoluta (Opcional)**: Fuerza el cierre de sesión tras un tiempo determinado, independientemente de la actividad del usuario.
+1. **Restrict Simultaneous Accesses**: Prevents the same account from logging in from different devices or browsers at the same time.
+2. **Inactivity Logout**: Sets a maximum inactivity time (in minutes). If the user does not interact with the platform in that time, their session will expire.
+3. **Absolute Expiration (Optional)**: Forces logout after a certain time, regardless of user activity.
 
-## Instalación
+## Installation
 
-1. Descarga y extrae la carpeta `b2b_security` en el directorio de `addons` de tu instancia de Odoo 18.0.
-2. Actualiza la lista de aplicaciones (Activa el Modo Desarrollador -> Aplicaciones -> Actualizar Lista de Aplicaciones).
-3. Busca `B2B Security` en la lista de aplicaciones.
-4. Haz clic en **Instalar**.
+1. Download and extract the `b2b_security` folder in your Odoo `addons` directory.
+2. Update the apps list (Activate Developer Mode -> Apps -> Update Apps List).
+3. Search for `B2B Security` in the apps list.
+4. Click **Install**.
 
-## Configuración y Uso
+## Configuration and Usage
 
-Toda la configuración se realiza desde el menú de ajustes de Odoo:
+All configuration is done from the Odoo settings menu:
 
-1. Ve a **Ajustes** > **Ajustes Generales**.
-2. Desplázate hacia abajo hasta encontrar la sección **Seguridad B2B**.
-3. **Evitar Inicios de Sesión Simultáneos**: Marca esta casilla para evitar que la misma cuenta se use en múltiples lugares al mismo tiempo.
-4. **Tiempo de Inactividad (minutos)**: Introduce el tiempo en minutos tras el cual una sesión inactiva se cerrará automáticamente (ej. 30 minutos).
-5. **Cierre de sesión forzado absoluto**: Marca esta casilla si deseas establecer un límite máximo de tiempo para una sesión (ej. 480 minutos), tras el cual se cerrará incluso si el usuario está activo.
+1. Go to **Settings** > **General Settings**.
+2. Scroll down until you find the **B2B Security** section.
+3. **Prevent Simultaneous Logins**: Check this box to prevent the same account from being used in multiple places at the same time.
+4. **Inactivity Timeout (minutes)**: Enter the time in minutes after which an inactive session will automatically close (e.g. 30 minutes).
+5. **Absolute forced logout**: Check this box if you want to set a maximum time limit for a session (e.g. 480 minutes), after which it will close even if the user is active.
 
-## Soporte
+## Support
 
-Si tienes algún problema, duda o necesitas desarrollo a medida, no dudes en contactar al autor.
+If you have any problems, questions, or need custom development, do not hesitate to contact the author.
 
-**Autor**: JDDM
+**Author**: JDDM
