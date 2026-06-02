@@ -20,7 +20,7 @@ Ideal para controlar el acceso de clientes a tu portal.
         'views/session_activity_views.xml',
         'views/res_users_views.xml',
     ],
-    'images': ['static/description/icon.png'],
+    'images': ['static/description/banner.png', 'static/description/icon.png'],
     'price': 25.00,
     'currency': 'USD',
     'installable': True,
