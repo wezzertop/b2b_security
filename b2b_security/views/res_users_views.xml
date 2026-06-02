@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_users_form_inherit_b2b_security" model="ir.ui.view">
+        <field name="name">res.users.form.inherit.b2b.security</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Seguridad B2B" name="b2b_security">
+                    <group string="Excepciones de Seguridad">
+                        <field name="bypass_b2b_security"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Custom Tree View for managing B2B user security -->
+    <record id="view_users_tree_b2b_security" model="ir.ui.view">
+        <field name="name">res.users.tree.b2b.security</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <list string="Administración de Usuarios B2B" create="false" edit="true" editable="top">
+                <field name="name" readonly="1"/>
+                <field name="login" readonly="1"/>
+                <field name="b2b_session_count" readonly="1"/>
+                <field name="bypass_b2b_security" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_users_search_b2b_security" model="ir.ui.view">
+        <field name="name">res.users.search.b2b.security</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Usuarios">
+                <field name="name" filter_domain="['|', ('name', 'ilike', self), ('login', 'ilike', self)]"/>
+                <filter string="Con Bypass Activo" name="has_bypass" domain="[('bypass_b2b_security', '=', True)]"/>
+                <filter string="Sin Bypass" name="no_bypass" domain="[('bypass_b2b_security', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action for B2B User Management -->
+    <record id="action_b2b_user_management" model="ir.actions.act_window">
+        <field name="name">Administración de Usuarios</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="view_users_tree_b2b_security"/>
+        <field name="search_view_id" ref="view_users_search_b2b_security"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Cargando lista de usuarios...
+            </p>
+            <p>
+                Aquí puedes habilitar o deshabilitar rápidamente la excepción de seguridad para cualquier usuario.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item for User Management -->
+    <menuitem id="b2b_user_management_menu" 
+              name="Control de Usuarios" 
+              parent="b2b_security_menu_root" 
+              action="action_b2b_user_management"
+              sequence="20"/>
+</odoo>

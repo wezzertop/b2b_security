@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit_security" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.b2b.security</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app string="Seguridad B2B" name="b2b_security">
+                    <block title="Seguridad de Sesiones" name="b2b_security_block">
+                        <setting id="prevent_logins_setting" help="Evita que tus clientes B2B compartan la misma cuenta de acceso.">
+                            <field name="prevent_simultaneous_logins"/>
+                        </setting>
+                        <setting id="session_timeout_setting" help="Tiempo límite de inactividad permitido en la plataforma (en minutos).">
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="b2b_session_timeout" class="col-lg-4 o_light_label"/>
+                                    <field name="b2b_session_timeout" class="oe_inline"/>
+                                    <span class="o_form_label oe_inline"> minutos</span>
+                                </div>
+                            </div>
+                        </setting>
+                        <setting id="force_absolute_timeout_setting" help="Cerrar la sesión obligatoriamente después del tiempo configurado, incluso si el usuario está interactuando con el sistema.">
+                            <field name="force_absolute_timeout"/>
+                            <div class="content-group" invisible="not force_absolute_timeout">
+                                <div class="row mt16">
+                                    <label for="absolute_timeout_minutes" class="col-lg-5 o_light_label"/>
+                                    <field name="absolute_timeout_minutes" class="oe_inline"/>
+                                    <span class="o_form_label oe_inline"> minutos</span>
+                                </div>
+                            </div>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+</odoo>

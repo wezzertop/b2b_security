@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Action -->
+    <record id="action_b2b_session_activity" model="ir.actions.act_window">
+        <field name="name">Sesiones Activas B2B</field>
+        <field name="res_model">b2b.session.activity</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No hay sesiones registradas.
+            </p>
+            <p>
+                Aquí verás las sesiones activas en tiempo real de los usuarios conectados a Odoo.
+            </p>
+        </field>
+    </record>
+
+    <!-- Tree View -->
+    <record id="view_b2b_session_activity_tree" model="ir.ui.view">
+        <field name="name">b2b.session.activity.tree</field>
+        <field name="model">b2b.session.activity</field>
+        <field name="arch" type="xml">
+            <list string="Sesiones Activas" create="false" edit="false" delete="true" decoration-muted="is_revoked == True">
+                <field name="user_id"/>
+                <field name="ip_address"/>
+                <field name="user_agent"/>
+                <field name="login_time"/>
+                <field name="last_activity"/>
+                <field name="is_revoked" widget="boolean_toggle" readonly="1"/>
+                <button name="action_revoke" 
+                        type="object" 
+                        string="Revocar / Cerrar" 
+                        class="btn-danger oe_highlight" 
+                        invisible="is_revoked"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_b2b_session_activity_form" model="ir.ui.view">
+        <field name="name">b2b.session.activity.form</field>
+        <field name="model">b2b.session.activity</field>
+        <field name="arch" type="xml">
+            <form string="Detalle de Sesión" create="false" edit="false">
+                <header>
+                    <button name="action_revoke" 
+                            type="object" 
+                            string="Cerrar Sesión Forzosamente" 
+                            class="btn-danger oe_highlight" 
+                            invisible="is_revoked"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="user_id"/>
+                            <field name="session_sid"/>
+                            <field name="ip_address"/>
+                            <field name="is_revoked"/>
+                        </group>
+                        <group>
+                            <field name="user_agent"/>
+                            <field name="login_time"/>
+                            <field name="last_activity"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_b2b_session_activity_search" model="ir.ui.view">
+        <field name="name">b2b.session.activity.search</field>
+        <field name="model">b2b.session.activity</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Sesiones">
+                <field name="user_id"/>
+                <field name="ip_address"/>
+                <filter string="Activas" name="active_sessions" domain="[('is_revoked', '=', False)]"/>
+                <filter string="Revocadas" name="revoked_sessions" domain="[('is_revoked', '=', True)]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Usuario" name="group_by_user" context="{'group_by': 'user_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <!-- Menú Raíz -->
+    <menuitem id="b2b_security_menu_root" 
+              name="Seguridad B2B" 
+              sequence="15"
+              web_icon="b2b_security,static/description/icon.png"/>
+
+    <!-- Submenú de Sesiones Activas -->
+    <menuitem id="b2b_session_activity_menu" 
+              name="Sesiones Activas" 
+              parent="b2b_security_menu_root" 
+              action="action_b2b_session_activity"
+              sequence="10"/>
+    <!-- Acción para Ajustes -->
+    <record id="action_b2b_security_configuration" model="ir.actions.act_window">
+        <field name="name">Ajustes</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'b2b_security', 'bin_size': False}</field>
+    </record>
+
+    <!-- Submenú Configuración -->
+    <menuitem id="b2b_security_configuration_menu" 
+              name="Configuración" 
+              parent="b2b_security_menu_root" 
+              sequence="100"/>
+
+    <!-- Submenú Ajustes -->
+    <menuitem id="b2b_security_settings_menu" 
+              name="Ajustes" 
+              parent="b2b_security_configuration_menu" 
+              action="action_b2b_security_configuration"
+              sequence="10"/>
+</odoo>

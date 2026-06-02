@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="ir_cron_sweep_ghost_sessions" model="ir.cron">
+            <field name="name">B2B Security: Limpiar Sesiones Abandonadas</field>
+            <field name="model_id" ref="model_b2b_session_activity"/>
+            <field name="state">code</field>
+            <field name="code">model._sweep_ghost_sessions()</field>
+            <field name="interval_number">15</field>
+            <field name="interval_type">minutes</field>
+            <field name="active" eval="True"/>
+        </record>
+    </data>
+</odoo>
