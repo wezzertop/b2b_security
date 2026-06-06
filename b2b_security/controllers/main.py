@@ -64,6 +64,10 @@ class B2BSecurityController(http.Controller):
             force_absolute = param_obj.get_param('b2b_security.force_absolute_timeout') == 'True'
             absolute_timeout_minutes = int(param_obj.get_param('b2b_security.absolute_timeout_minutes', default='60')) if force_absolute else 0
 
+        msg_kicked_other_device = param_obj.get_param('b2b_security.msg_kicked_other_device', default='Su sesión ha sido cerrada desde otro dispositivo o por el administrador.')
+        msg_timeout_inactivity = param_obj.get_param('b2b_security.msg_timeout_inactivity', default='Su sesión ha expirado por inactividad.')
+        msg_timeout_absolute = param_obj.get_param('b2b_security.msg_timeout_absolute', default='Su sesión ha alcanzado el límite máximo de tiempo permitido.')
+
         # Buscar si ya existe registro de esta sesión en la base de datos
         activity = activity_env.search([
             ('session_sid', '=', session_sid),
@@ -103,7 +107,7 @@ class B2BSecurityController(http.Controller):
             # 2. Si ya existe, verificar si ha sido revocada por el administrador o por otra sesión
             if activity.is_revoked:
                 request.session.logout(keep_db=True)
-                return {'status': 'kicked'}
+                return {'status': 'kicked', 'message': msg_kicked_other_device}
 
             # 3. Validar Expiraciones en el Servidor (por ejemplo, si el usuario regresa tras cerrar la laptop)
             # Validar Idle (Inactividad)
@@ -112,7 +116,7 @@ class B2BSecurityController(http.Controller):
                 if elapsed_idle > (timeout_minutes * 60):
                     activity.write({'is_revoked': True})
                     request.session.logout(keep_db=True)
-                    return {'status': 'kicked'}
+                    return {'status': 'kicked', 'message': msg_timeout_inactivity}
 
             # Validar Límite Absoluto
             if absolute_timeout_minutes > 0:
@@ -120,7 +124,7 @@ class B2BSecurityController(http.Controller):
                 if elapsed_absolute > (absolute_timeout_minutes * 60):
                     activity.write({'is_revoked': True})
                     request.session.logout(keep_db=True)
-                    return {'status': 'kicked'}
+                    return {'status': 'kicked', 'message': msg_timeout_absolute}
 
             # Si pasa las validaciones, actualizar la última actividad en base de datos
             activity.write({
@@ -136,5 +140,7 @@ class B2BSecurityController(http.Controller):
             'status': 'ok',
             'timeout_minutes': timeout_minutes,
             'absolute_timeout_minutes': absolute_timeout_minutes,
-            'elapsed_seconds': elapsed_seconds
+            'elapsed_seconds': elapsed_seconds,
+            'msg_timeout_inactivity': msg_timeout_inactivity,
+            'msg_timeout_absolute': msg_timeout_absolute
         }

@@ -28,3 +28,24 @@ class ResConfigSettings(models.TransientModel):
         default=60,
         help="Minutos totales que puede durar la sesión antes de cerrarse obligatoriamente."
     )
+
+    msg_kicked_other_device = fields.Char(
+        string="Mensaje por Logueo en Otro Dispositivo",
+        config_parameter="b2b_security.msg_kicked_other_device",
+        default="Su sesión ha sido cerrada desde otro dispositivo o por el administrador.",
+        help="Mensaje a mostrar cuando la sesión se cierra desde otro dispositivo o es revocada por un administrador."
+    )
+
+    msg_timeout_inactivity = fields.Char(
+        string="Mensaje por Inactividad",
+        config_parameter="b2b_security.msg_timeout_inactivity",
+        default="Su sesión ha expirado por inactividad.",
+        help="Mensaje a mostrar cuando la sesión expira por alcanzar el límite de inactividad permitido."
+    )
+
+    msg_timeout_absolute = fields.Char(
+        string="Mensaje por Límite de Tiempo Máximo",
+        config_parameter="b2b_security.msg_timeout_absolute",
+        default="Su sesión ha alcanzado el límite máximo de tiempo permitido.",
+        help="Mensaje a mostrar cuando la sesión expira por alcanzar el límite absoluto de tiempo permitido."
+    )

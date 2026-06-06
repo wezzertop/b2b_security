@@ -42,7 +42,7 @@ export const sessionSecurityService = {
                 const result = json.result;
                 
                 if (result && result.status === "kicked") {
-                    window.alert("Su sesión ha sido cerrada desde otro dispositivo o por el administrador.");
+                    window.alert(result.message || "Su sesión ha sido cerrada desde otro dispositivo o por el administrador.");
                     browser.location.href = "/web/session/logout?redirect=/web/login";
                     return;
                 }
@@ -56,7 +56,7 @@ export const sessionSecurityService = {
                     const timeoutMs = timeoutMinutes * 60 * 1000;
                     
                     if (elapsedMs > timeoutMs) {
-                        window.alert("Su sesión ha expirado por inactividad.");
+                        window.alert(result.msg_timeout_inactivity || "Su sesión ha expirado por inactividad.");
                         browser.location.href = "/web/session/logout?redirect=/web/login";
                         return;
                     }
@@ -67,7 +67,7 @@ export const sessionSecurityService = {
                     const timeoutSeconds = result.absolute_timeout_minutes * 60;
                     
                     if (elapsedSeconds > timeoutSeconds) {
-                        window.alert("Su sesión ha alcanzado el límite máximo de tiempo permitido.");
+                        window.alert(result.msg_timeout_absolute || "Su sesión ha alcanzado el límite máximo de tiempo permitido.");
                         browser.location.href = "/web/session/logout?redirect=/web/login";
                         return;
                     }

@@ -31,6 +31,17 @@
                             </div>
                         </setting>
                     </block>
+                    <block title="Mensajes de Cierre de Sesión" name="b2b_security_messages_block">
+                        <setting id="msg_kicked_other_device_setting" help="Mensaje mostrado al usuario cuando su sesión es cerrada porque inició sesión en otro dispositivo o fue revocada por un administrador.">
+                            <field name="msg_kicked_other_device"/>
+                        </setting>
+                        <setting id="msg_timeout_inactivity_setting" help="Mensaje mostrado cuando la sesión expira por alcanzar el límite de inactividad permitido.">
+                            <field name="msg_timeout_inactivity"/>
+                        </setting>
+                        <setting id="msg_timeout_absolute_setting" help="Mensaje mostrado cuando la sesión expira por alcanzar el límite de tiempo absoluto permitido.">
+                            <field name="msg_timeout_absolute"/>
+                        </setting>
+                    </block>
                 </app>
             </xpath>
         </field>
