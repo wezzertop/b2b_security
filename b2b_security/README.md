@@ -7,6 +7,7 @@ This module provides advanced control over user sessions for B2B portals in Odoo
 1. **Restrict Simultaneous Accesses**: Prevents the same account from logging in from different devices or browsers at the same time.
 2. **Inactivity Logout**: Sets a maximum inactivity time (in minutes). If the user does not interact with the platform in that time, their session will expire.
 3. **Absolute Expiration (Optional)**: Forces logout after a certain time, regardless of user activity.
+4. **Professional & Customizable Notifications**: Provides complete control over the messages shown to users when they are logged out. You can define specific, professional alerts for when a session expires due to inactivity, maximum time reached, or when a login occurs from another device.
 
 ## Installation
 
@@ -24,6 +25,7 @@ All configuration is done from the Odoo settings menu:
 3. **Prevent Simultaneous Logins**: Check this box to prevent the same account from being used in multiple places at the same time.
 4. **Inactivity Timeout (minutes)**: Enter the time in minutes after which an inactive session will automatically close (e.g. 30 minutes).
 5. **Absolute forced logout**: Check this box if you want to set a maximum time limit for a session (e.g. 480 minutes), after which it will close even if the user is active.
+6. **Logout Messages (Mensajes de Cierre de Sesión)**: Fill in your custom texts to communicate professionally with your users in each logout scenario.
 
 ## Support
 
