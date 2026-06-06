@@ -2,13 +2,14 @@
     'name': 'B2B Security: Restrict Logins & Session Timeout',
     'version': '18.0.1.0.0',
     'category': 'Extra Tools',
-    'summary': 'Prevents simultaneous logins and adds inactivity session timeouts for portal users.',
+    'summary': 'Prevents simultaneous logins, adds inactivity session timeouts, and customizable logout messages for portal users.',
     'description': """
 B2B Security & Session Control
 ==============================
-This module helps protect B2B portal environments by implementing two key security features:
+This module helps protect B2B portal environments by implementing key security features with a professional user experience:
 1. Prevents multiple users from logging into the same account simultaneously from different devices/browsers.
 2. Automatically logs users out after a configurable period of inactivity to protect sensitive data.
+3. Fully Customizable Logout Messages: Configure professional, branded messages to explain exactly why a session was closed (e.g. login from another device, inactivity, or maximum time reached).
 Administrators can configure these settings from General Settings and can bypass restrictions for specific users.
     """,
     'author': 'JDDM',
